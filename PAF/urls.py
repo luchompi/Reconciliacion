@@ -5,5 +5,5 @@ app_name="autor"
 
 urlpatterns = [
     path('', views.index, name='index'),
-    #path('nuevo/', views.autor_view(), name='autor_crear'),
+    path('Cargar_Excell/', views.upload, name='carga'),
 ]
