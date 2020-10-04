@@ -16,11 +16,11 @@ class Paf(models.Model):
     fecha_vencimiento = models.CharField(max_length=50)
     fecha_caducidad = models.CharField(max_length=50)
     valor = models.CharField(max_length=50)
-    timestamp = models.DateTimeField(auto_now=True)
+    timestamps = models.DateTimeField(auto_now=True)
   
     def __str__(self):
         return '{0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12} {13}'.format(self.departamento,
         	self.municipio, self.serial, self.numeroConvenio, self.convenio, self.tipo_doc,self.documento,
         	self.nombre,self.tipo_bono,self.formulario,self.fecha_expedicion,self.fecha_vencimiento,
-        	self.fecha_caducidad, self.valor, self.timestamp)
+        	self.fecha_caducidad, self.valor, self.timestamps)
 
