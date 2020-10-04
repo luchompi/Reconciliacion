@@ -4,4 +4,4 @@ from .models import ImportarPAF
 class ExcelModelForm(forms.ModelForm):
     class Meta:
         model = ImportarPAF
-        fields = ('file_name',)
+        fields = ('nombre_archivo','file_name',)

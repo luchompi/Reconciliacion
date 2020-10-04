@@ -19,7 +19,7 @@ class Paf(models.Model):
     timestamps = models.DateTimeField(auto_now_add=True)
   
 class ImportarPAF(models.Model):
-      
+    nombre_archivo = models.CharField(max_length=50)
     file_name=models.FileField(upload_to='excel')
     timestamp = models.DateField(auto_now=True)
     subido = models.BooleanField(default=False)
@@ -27,7 +27,7 @@ class ImportarPAF(models.Model):
     
 
     def __str__(self):
-        return f"File id: {self.id}"
+        return str(self.nombre_archivo)
 
     def __unicode__(self):
         return 

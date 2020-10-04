@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<a class="btn btn-primary" href="{% url 'paf:carga' %}">Nuevo</a>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Archivo</th>
+      <th scope="col">Timestamp</th>
+         <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if object_list %}
+    {% for reg in object_list %}
+    <tr class="table-active">
+      <th scope="row">{{ reg.id }}</th>
+      <td>{{ reg.nombre_archivo }}</td>
+      <td>{{ reg.file_name }}</td>
+      <td>{{ reg.timestamp }}</td>
+      <td><a class="btn btn-primary" href="{% url 'paf:editar_archivo' reg.id %}">Edit</a>
+        <a class="btn btn-primary" href="{% url 'paf:eliminar_archivo' reg.id %}">Delete</a></td>
+
+      
+    </tr>
+  {% endfor %}
+  {% else %}
+  <tr><td colspan="8">No hay Registros!</td></tr>
+  {% endif %}
+  </tbody>
+</table>
+{% endblock %}
+
