@@ -1,0 +1,13 @@
+{%extends "base/base.html"%}
+
+
+
+{%block content%}
+CARGA AQUI TU ARCHIVO
+
+<form action="" method="POST" class="ui form" enctype="multipart/form-data">
+{% csrf_token %}
+{{form}}
+<button type="submit" class="ui button pimary"> Confirmar</button>
+</form>
+{%endblock%}

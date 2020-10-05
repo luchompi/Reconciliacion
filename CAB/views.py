@@ -3,6 +3,7 @@ from .models import Cab
 from django.views.generic import ListView
 from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
+from .forms import *
 import pymysql
 import django_excel as excel
 import pymysql.cursors
@@ -33,14 +34,13 @@ def upload(request):
 		try:
 			with connection.cursor() as cursor:
 				df = pd.read_excel(file_name,skiprows = 2,
-		                 names=['DEPARTAMENTO','MUNICIPIO','SERIAL','NUMERO DEL CONVENIO','CONVENIO','TIPO_DOC','DOCUMENTO',
-		                 'NOMBRE','TIPO_BONO','FORMULARIO','FECHA_EXPEDICION','FECHA_VENCIMIENTO','FECHA_CADUCIDAD','VALOR'],sheet_name='Report')
+		                 names=['DEPARTAMENTO_MUNICIPIO','PERSON_ID','CICLO','CONVENIO','TIPO_DOC','DOCUMENTO','APELLIDOS','NOMBRE','SEGUNDO_NOMBRE','TIPO_BONO','FORMULARIO','FECHA_EXPEDICION','FECHA_VENCIMIENTO','FECHA_CADUCIDAD','VALOR','SCOPE_ACCOUNT','SCOPE_PAYMENT_ST','SCOPE_PAYMENT_DT'],sheet_name='Sheet1')
 				df.keys()
 				for i in range(0,len(df)):
-					sql="INSERT INTO paf_paf(departamento,municipio,serial,numeroConvenio,convenio,tipo_doc,documento,nombre,tipo_bono,formulario,fecha_expedicion,fecha_vencimiento,fecha_caducidad,valor) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-					cursor.execute(sql,[df['DEPARTAMENTO'][i],df['MUNICIPIO'][i],df['SERIAL'][i],df['NUMERO DEL CONVENIO'][i],df['CONVENIO'][i],df['TIPO_DOC'][i],df['DOCUMENTO'][i],df['NOMBRE'][i],df['TIPO_BONO'][i],df['FORMULARIO'][i],df['FECHA_EXPEDICION'][i],df['FECHA_VENCIMIENTO'][i],df['FECHA_CADUCIDAD'][i],df['VALOR'][i]])
+					sql="INSERT INTO cab_cab(departamento_municipio,person_id,ciclo,convenio,tipo_doc,documento,apellidos,nombre,segundo_nombre,tipo_bono,formulario,fecha_expedicion,fecha_vencimiento,fecha_caducidad,valor,scope_account,scope_payment_st,scope_payment_dt) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+					cursor.execute(sql,[df['DEPARTAMENTO_MUNICIPIO'][i],df['PERSON_ID'][i],df['CICLO'][i],df['CONVENIO'][i],df['TIPO_DOC'][i],df['DOCUMENTO'][i],df['DOCUMENTO'][i],df['APELLIDOS'][i],df['NOMBRE'][i],df['SEGUNDO_NOMBRE'][i],df['TIPO_BONO'][i],df['FORMULARIO'][i],df['FECHA_EXPEDICION'][i],df['FECHA_VENCIMIENTO'][i],df['FECHA_CADUCIDAD'][i],df['VALOR'][i],df['SCOPE_ACCOUNT'][i],df['SCOPE_PAYMENT_ST'][i],df['SCOPE_PAYMENT_DT'][i]])
 					connection.commit()
 		finally:
 			connection.close()
-		return redirect('paf:index-archivo')
-	return render(request,'PAF/upload.html', {'form':form})
+		return redirect('cab:index-archivo')
+	return render(request,'CAB/upload.html', {'form':form})
