@@ -1,15 +1,59 @@
 {% extends 'base/base.html' %}
-{% block title %}
-    PAF
-{% endblock %}
-
-{% block header %}
-    Lista de PAF
-    <hr>
-{% endblock %}
-
 {% block content %}
-Code...
-{% endblock %}
+<a class="btn btn-primary" href="{% url 'paf:crear_paf' %}">Nuevo</a>
 
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Departamento</th>
+      <th scope="col">Municipio</th>
+      <th scope="col">Serial</th>
+      <th scope="col">No. Convenio</th>
+      <th scope="col">Convenio</th>
+      <th scope="col">Tipo documento</th>
+      <th scope="col">Documento</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Tipo de bono</th>
+      <th scope="col">Formulario</th>
+      <th scope="col">Fecha de expedicion</th>
+      <th scope="col">Fecha de Vencimiento</th>
+      <th scope="col">Fecha de Caducidad</th>
+      <th scope="col">Valor</th>
+      <th scope="col">Timestamp</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if object_list %}
+    {% for reg in object_list %}
+    <tr class="table-active">
+      <th scope="row">{{ reg.id }}</th>
+      <td>{{ reg.departamento }}</td>
+      <td>{{ reg.municipio }}</td>
+      <td>{{ reg.serial }}</td>
+      <td>{{ reg.numeroConvenio }}</td>
+      <td>{{ reg.convenio }}</td>
+      <td>{{ reg.tipo_doc }}</td>
+      <td>{{ reg.documento }}</td>
+      <td>{{ reg.nombre }}</td>
+      <td>{{ reg.tipo_bono }}</td>
+      <td>{{ reg.formulario }}</td>
+      <td>{{ reg.fecha_expedicion }}</td>
+      <td>{{ reg.fecha_vencimiento }}</td>
+      <td>{{ reg.fecha_caducidad }}</td>
+      <td>{{ reg.valor }}</td>
+      <td>{{ reg.timestamps }}</td>
+      <td><a class="btn btn-primary" href="{% url 'paf:edit_paf' reg.id %}">Edit</a>
+        <a class="btn btn-primary" href="{% url 'paf:del_paf' reg.id %}">Delete</a></td>
+
+      
+    </tr>
+  {% endfor %}
+  {% else %}
+  <tr><td colspan="8">No hay Registros!</td></tr>
+  {% endif %}
+  </tbody>
+</table>
+{% endblock %}
 

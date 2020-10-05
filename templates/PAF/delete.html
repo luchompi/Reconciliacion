@@ -4,9 +4,9 @@
 
 <form method="post">
 {%   csrf_token %}
-<h3>Se eleminara el registro de {{ file.nombre }}, Desea continuar?</h3>
+<h3>Se eleminara el registro de {{ object.nombre }}, Desea continuar?</h3>
 <button class="btn btn-danger" type="submit">Eliminar</button>
-    <a class="btn btn-default" href="{% url 'paf:index_file' %}">Cancelar</a>
+    <a class="btn btn-default" href="{% url 'paf:index' %}">Cancelar</a>
 </form>
 
 
