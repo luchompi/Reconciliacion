@@ -2,6 +2,10 @@ from django.shortcuts import render
 from .forms import ExcelModelForm
 from PAF.models import *
 from django.urls import reverse_lazy
+import pymysql
+import django_excel as excel
+
+
 from django.views.generic import ListView,UpdateView, DeleteView
 # Create your views here.
 #Carga de los XLSX
@@ -35,3 +39,4 @@ def file_delete(request,id):
         file.delete()
         return redirect('paf:index-archivo')
     return render(request, 'PAF/delete_file.html',{'file':file})
+
