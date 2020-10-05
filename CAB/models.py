@@ -22,12 +22,10 @@ class Cab(models.Model):
     scope_payment_dt = models.CharField(max_length=50)
     timestamps = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return '{0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12} {13} {14} {15} {16} {17} {18} {19}'.format(self.departamento_municipio, self.person_id, self.ciclo, self.convenio, self.tipo_doc, self.documento,
-self,apellidos, self.mombre, self.segundo_nombre, self.tipo_bono, self.formunario, self.fecha_expedicion,
-self.fecha_vencimiento, self.fecha_caducidad, self.valor, self.scope_account, self.scope_payment_st, 
-self.scope_payment_dt, self.timestamps)
+class ImportarCAB(models.Model):
+    nombre_archivo = models.CharField(max_length=50)
+    file_name=models.FileField(upload_to='excel')
+    timestamp = models.DateField(auto_now=True)
+    subido = models.BooleanField(default=False)
 
-
-    def __unicode__(self):
-        return 
+    
