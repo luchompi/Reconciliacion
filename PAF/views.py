@@ -30,11 +30,11 @@ def upload(request):
 		try:
 			with connection.cursor() as cursor:
 				df = pd.read_excel(file_name,skiprows = 2,
-		                 names=['DEPARTAMENTO','MUNICIPIO','SERIAL','NUMERO DEL CONVENIO','CONVENIO','TIPO_DOC','DOCUMENTO',
-		                 'NOMBRE','TIPO_BONO','FORMULARIO','FECHA_EXPEDICION','FECHA_VENCIMIENTO','FECHA_CADUCIDAD','VALOR'],sheet_name='Report')
+				names=['DEPARTAMENTO','MUNICIPIO','SERIAL','NUMERO DEL CONVENIO','CONVENIO','TIPO_DOC','DOCUMENTO',
+				'NOMBRE','TIPO_BONO','FORMULARIO','FECHA_EXPEDICION','FECHA_VENCIMIENTO','FECHA_CADUCIDAD','VALOR'],sheet_name='Report')
 				df.keys()
-				for i in range(0,len(df)):
-					sql="INSERT INTO paf_paf(departamento,municipio,serial,numeroConvenio,convenio,tipo_doc,documento,nombre,tipo_bono,formulario,fecha_expedicion,fecha_vencimiento,fecha_caducidad,valor) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+				sql="INSERT INTO paf_paf(departamento,municipio,serial,numeroConvenio,convenio,tipo_doc,documento,nombre,tipo_bono,formulario,fecha_expedicion,fecha_vencimiento,fecha_caducidad,valor) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+				for i in range(len(df)):
 					cursor.execute(sql,[df['DEPARTAMENTO'][i],df['MUNICIPIO'][i],df['SERIAL'][i],df['NUMERO DEL CONVENIO'][i],df['CONVENIO'][i],df['TIPO_DOC'][i],df['DOCUMENTO'][i],df['NOMBRE'][i],df['TIPO_BONO'][i],df['FORMULARIO'][i],df['FECHA_EXPEDICION'][i],df['FECHA_VENCIMIENTO'][i],df['FECHA_CADUCIDAD'][i],df['VALOR'][i]])
 					connection.commit()
 		finally:
